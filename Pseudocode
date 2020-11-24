@@ -1,0 +1,21 @@
+/*  Pseudocode Proj-3
+HTML
+Ideally making as few changes to the HTML file
+Add script tags for app.js
+Modify the HTML to add an "Other" option for the Job Role Section
+
+CSS
+Contains the styles for this project
+Able to play around with some of the styles to make it your own
+Experiment with background color, font, transitions, animations,
+box shadows, and text shadows.
+Basic layout and positioning of elements should not be changed
+
+Normalize CSS / CSS Reset
+
+JavaScript
+Link js/script.js to index.html file
+Select 'Name' input element and place focus on it
+
+
+*/
