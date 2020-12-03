@@ -5,12 +5,12 @@
 
 // Global Variables
 const otherTitle = document.getElementById("other-title");
-// const design = document.querySelector("#design"); // select design id
-// const colorMenu = document.querySelector('#color');
-// const colorDiv = document.getElementById("shirt-colors");  // select div color id
-// console.log(design);
-// console.log(colorDiv);
-// console.log(colorMenu);
+let design = document.querySelector("#design"); // select design id
+let colorDiv = document.getElementById("shirt-colors");  // select div color id
+let colorMenu = document.querySelector("#color"); // select color id
+console.log(design);
+console.log(colorDiv);
+console.log(colorMenu);
 
 // On page load sets focus on "Name" input
 window.onload = () => {
@@ -30,13 +30,6 @@ title.addEventListener("change", () => {
 
 
 //T-Shirt Info Section
-let design = document.querySelector("#design"); // select design id
-let colorDiv = document.getElementById("shirt-colors");  // select div color id
-let colorMenu = document.querySelector("#color"); // select color id
-console.log(design);
-console.log(colorDiv);
-console.log(colorMenu);
-
 function hide() {
   if (design.options[0]) {
     let option = colorDiv.textContent = "Please select Design"; //alters html
