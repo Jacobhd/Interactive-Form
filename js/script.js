@@ -30,32 +30,35 @@ title.addEventListener("change", () => {
 
 
 //T-Shirt Info Section
-function hide() {
-  if (design.options[0]) {
-    let option = colorDiv.textContent = "Please select Design"; //alters html
+const fieldcheck = () => {
+
+  colorDiv.hidden = true;
+
+  function hide() {
+    if (design.options[0]) {
+      let option = colorDiv.textContent = "Please select Design"; //alters html
+    }
   }
+  //hide();
+
+  design.addEventListener("change", (e) => {
+    colorDiv.hidden = false;
+    let option = e.target.value;
+    if (option === design.options[2]) {
+      [...colorMenu.children].filter(color => {
+        const heartCode = String.fromCharCode(parseInt(9829));
+        if (color.textContent.includes(heartCode)) {
+          return color.textContent;
+        }
+      });
+    } else if (option === design.options[1]) {
+      return color.textContent;
+    } else {
+      hide();
+    }
+  });
 }
-//hide();
-
-colorDiv.hidden = true;
-
-design.addEventListener("change", (e) => {
-  colorDiv.hidden = false;
-  let option = e.target.value;
-  if (option === design.options[2]) {
-    [...colorMenu.children].filter(color => {
-      const heartCode = String.fromCharCode(parseInt(9829));
-      if (color.textContent.includes(heartCode)) {
-        return color.textContent;
-      } else if (option === design.options[1]) {
-        return color.textContent;
-      } else {
-        hide();
-      }
-    });
-  }
-});
-
+fieldcheck();
 
 /* Notes, thoughts, questions, tests
 
