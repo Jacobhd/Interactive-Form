@@ -1,4 +1,4 @@
-/*  Pseudocode Proj-3
+/*  Pseudocode Project-3
 HTML
 Ideally making as few changes to the HTML file
 Add script tags for app.js
@@ -16,6 +16,11 @@ Normalize CSS / CSS Reset
 JavaScript
 Link js/script.js to index.html file
 Select 'Name' input element and place focus on it
+Hide other-title until Other is selected
 
+Design Section
+hide color options
+"color" field reads "Please Select a T-shirt theme"
+"Color" field is updated when design menu is used
 
 */
