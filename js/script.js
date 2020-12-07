@@ -27,14 +27,15 @@ const designCheck = () => {
   const design = document.querySelector("#design");
   const colorMenu = document.querySelector("#color");
   const colorOptions = document.querySelectorAll('#color option');
+  //const selectTheme = new Option('Please Select Design', 'selectdesign');
   colorMenu.hidden = true;
 
   design.addEventListener("change", (e) => {
-    let option = e.target.value;
     colorMenu.hidden = false;
+    let option = e.target.value;
     for (let i = 0; i < colorOptions.length; i++) {
       colorOptions[i].hidden = true;
-      colorMenu.removeAttribute("value", "selected");
+      colorOptions[i].removeAttribute("selected", true);
     }
 
     if (option === 'heart js') {
@@ -42,18 +43,24 @@ const designCheck = () => {
         const heartCode = String.fromCharCode(parseInt(9829));
         if (color.textContent.includes(heartCode)) {
           color.hidden = false;
-          //colorMenu.addAttribute("value", "selected");
+          colorMenu[3].setAttribute("selected", true);
         }
       });
-    } else if (option === 'js puns') {
-      color.hidden = false;
-      colorMenu.style.display = "block";
-    } else {
-      color.hidden = true;
-      colorMenu.value = "Please select Design";
     }
+    if (option === 'js puns') {
+      [...colorMenu.children].filter(color => {
+        const punCode = String.fromCharCode("Puns");
+        if (color.textContent.includes(punCode)) {
+          color.hidden = false;
+          colorMenu[0].setAttribute("selected", true);
+        }
+      });
+    }
+    //if (option === 'Select Theme'){
+      //color.hidden = true;
+      // colorMenu[6].display = "block";
+      // colorMenu[6].setAttribute("selected", true);
+    //}
   });
 }
 designCheck();
-
-//colorMenu.removeAttribute("colorOptions[i]", "selected");
