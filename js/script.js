@@ -34,7 +34,7 @@ const designCheck = () => {
     colorMenu.hidden = false;
     for (let i = 0; i < colorOptions.length; i++) {
       colorOptions[i].hidden = true;
-      colorOptions[i].removeAttribute("class", "select");
+      colorMenu.removeAttribute("value", "selected");
     }
 
     if (option === 'heart js') {
@@ -42,15 +42,18 @@ const designCheck = () => {
         const heartCode = String.fromCharCode(parseInt(9829));
         if (color.textContent.includes(heartCode)) {
           color.hidden = false;
-          //colorMenu.addAttribute("selected", "colorOptions[3]");
+          //colorMenu.addAttribute("value", "selected");
         }
       });
     }
     // } else if (option === 'js puns') {
+    //   color.hidden = false;
     //
     // } else {
     //   colorMenu.value = "Please select Design";
-    // }
+    //}
   });
 }
 designCheck();
+
+//colorMenu.removeAttribute("colorOptions[i]", "selected");
