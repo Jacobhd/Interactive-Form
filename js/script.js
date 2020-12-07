@@ -45,13 +45,13 @@ const designCheck = () => {
           //colorMenu.addAttribute("value", "selected");
         }
       });
+    } else if (option === 'js puns') {
+      color.hidden = false;
+      colorMenu.style.display = "block";
+    } else {
+      color.hidden = true;
+      colorMenu.value = "Please select Design";
     }
-    // } else if (option === 'js puns') {
-    //   color.hidden = false;
-    //
-    // } else {
-    //   colorMenu.value = "Please select Design";
-    //}
   });
 }
 designCheck();
