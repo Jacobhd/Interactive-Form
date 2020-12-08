@@ -23,12 +23,34 @@ title.addEventListener("change", () => {
 
 
 //T-Shirt Info Section
-const designCheck = () => {
+//const designCheck = () => {
   const design = document.querySelector("#design");
   const colorMenu = document.querySelector("#color");
-  const colorOptions = document.querySelectorAll('#color option');
+  const colorOptions = document.querySelectorAll("#color option");
   //const selectTheme = new Option('Please Select Design', 'selectdesign');
-  colorMenu.hidden = true;
+   colorMenu.hidden = true;
+
+let colorFunc = () => {
+[...colorMenu.children].filter(color => {
+  const heartCode = String.fromCharCode(parseInt(9829));  //heart symbol
+  if (color.textContent.includes(heartCode)) {
+    console.log(color.textContent);
+    // return;
+//   } else {
+//     console.log(color.textContent);
+  }
+});
+}
+colorFunc();
+
+
+// [...colorMenu.children].filter(color => {
+//   const punCode = String.fromCharCode("Puns");
+//   if (color.textContent.includes(punCode)) {
+//     console.log(color.textContent);
+//   }
+// });
+
 
   design.addEventListener("change", (e) => {
     colorMenu.hidden = false;
@@ -39,6 +61,7 @@ const designCheck = () => {
     }
 
     if (option === 'heart js') {
+      //colorFunc(color.textContent);
       [...colorMenu.children].filter(color => {
         const heartCode = String.fromCharCode(parseInt(9829));
         if (color.textContent.includes(heartCode)) {
@@ -46,21 +69,42 @@ const designCheck = () => {
           colorMenu[3].setAttribute("selected", true);
         }
       });
-    }
-    if (option === 'js puns') {
-      [...colorMenu.children].filter(color => {
-        const punCode = String.fromCharCode("Puns");
-        if (color.textContent.includes(punCode)) {
+    } else if (option === 'js puns') {
           color.hidden = false;
-          colorMenu[0].setAttribute("selected", true);
+          //colorMenu[1].setAttribute("selected", true);
         }
-      });
-    }
+      //});
+    //}
     //if (option === 'Select Theme'){
       //color.hidden = true;
       // colorMenu[6].display = "block";
       // colorMenu[6].setAttribute("selected", true);
     //}
   });
-}
-designCheck();
+//}
+//designCheck();
+
+
+/* nonworking iterations
+
+[...colorMenu.children].filter(color => {
+        const punCode = String.fromCharCode("Puns");
+        if (color.textContent.includes(punCode)) {
+          //color.hidden = false;
+          colorMenu[0].setAttribute("selected", true);
+        }
+      });
+
+
+[...colorMenu.children].filter(color => {
+  const heartCode = String.fromCharCode(parseInt(9829));  //heart symbol
+  if (color.textContent.includes(heartCode)) {
+    const heart = color.textContent;
+    return color.textContent;
+  } else {
+    const puns = color.textContent;
+  }
+});
+console.log(heart);
+
+*/
