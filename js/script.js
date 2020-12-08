@@ -5,6 +5,11 @@
 // Global Variables
 const otherTitle = document.getElementById("other-title");
 
+//T-Shirt Info Section
+const design = document.querySelector("#design");
+const colorMenu = document.querySelector("#color");
+const colorOptions = document.querySelectorAll("#color option");
+
 // On page load sets focus on "Name" input
 window.onload = () => {
  document.getElementById("name").focus();
@@ -23,36 +28,11 @@ title.addEventListener("change", () => {
 
 
 //T-Shirt Info Section
-//const designCheck = () => {
-  const design = document.querySelector("#design");
-  const colorMenu = document.querySelector("#color");
-  const colorOptions = document.querySelectorAll("#color option");
+const designCheck = () => {
   //const selectTheme = new Option('Please Select Design', 'selectdesign');
-   colorMenu.hidden = true;
-
-let colorFunc = () => {
-[...colorMenu.children].filter(color => {
-  const heartCode = String.fromCharCode(parseInt(9829));  //heart symbol
-  if (color.textContent.includes(heartCode)) {
-    console.log(color.textContent);
-    // return;
-//   } else {
-//     console.log(color.textContent);
-  }
-});
-}
-colorFunc();
-
-
-// [...colorMenu.children].filter(color => {
-//   const punCode = String.fromCharCode("Puns");
-//   if (color.textContent.includes(punCode)) {
-//     console.log(color.textContent);
-//   }
-// });
-
-
+  colorMenu.hidden = true;
   design.addEventListener("change", (e) => {
+    design[0].style.display = "none";
     colorMenu.hidden = false;
     let option = e.target.value;
     for (let i = 0; i < colorOptions.length; i++) {
@@ -61,7 +41,6 @@ colorFunc();
     }
 
     if (option === 'heart js') {
-      //colorFunc(color.textContent);
       [...colorMenu.children].filter(color => {
         const heartCode = String.fromCharCode(parseInt(9829));
         if (color.textContent.includes(heartCode)) {
@@ -69,42 +48,16 @@ colorFunc();
           colorMenu[3].setAttribute("selected", true);
         }
       });
+      colorMenu[0].style.display = "none"
+      colorMenu[1].style.display = "none"
+      colorMenu[2].style.display = "none"
     } else if (option === 'js puns') {
           color.hidden = false;
-          //colorMenu[1].setAttribute("selected", true);
-        }
-      //});
-    //}
-    //if (option === 'Select Theme'){
-      //color.hidden = true;
-      // colorMenu[6].display = "block";
-      // colorMenu[6].setAttribute("selected", true);
-    //}
-  });
-//}
-//designCheck();
-
-
-/* nonworking iterations
-
-[...colorMenu.children].filter(color => {
-        const punCode = String.fromCharCode("Puns");
-        if (color.textContent.includes(punCode)) {
-          //color.hidden = false;
+          colorMenu[0].style.display = "block"
           colorMenu[0].setAttribute("selected", true);
-        }
-      });
-
-
-[...colorMenu.children].filter(color => {
-  const heartCode = String.fromCharCode(parseInt(9829));  //heart symbol
-  if (color.textContent.includes(heartCode)) {
-    const heart = color.textContent;
-    return color.textContent;
-  } else {
-    const puns = color.textContent;
-  }
-});
-console.log(heart);
-
-*/
+          colorMenu[1].style.display = "block"
+          colorMenu[2].style.display = "block"
+    }
+  });
+}
+designCheck();
