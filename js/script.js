@@ -11,16 +11,14 @@ const colorMenu = document.querySelector("#color");
 const colorOptions = document.querySelectorAll("#color option");
 
 // Activities Section
-const checkBox = document.querySelectorAll('input[type="checkbox"]');
 const activities = document.getElementsByClassName("activities");
 const activity = document.querySelector(".activities");
 let totalCost = document.createElement("totalCost");
 activity.append(totalCost);
 let activityCost = 0;
-// console.log(checkBox);
-// console.log(activities);
-// console.log(activity);
-// console.log(totalCost);
+// console.log(activities);//HTMLCollection [fieldset.activities]
+// console.log(activity);  //fieldset class activities
+// console.log(totalCost); //<totalcost></totalcost>
 
 
 // Payment Section
@@ -42,10 +40,9 @@ title.addEventListener("change", () => {
   }
 })
 
-//********************************************************************************
+/********************************************************************************/
 //T-Shirt Info Section - Displays color options based on 'design' selection
-//const designCheck = () => {
-  //const selectTheme = new Option('Please Select Design', 'selectdesign');
+
   colorMenu.hidden = true;
   design.addEventListener("change", (e) => {
     design[0].style.display = "none";
@@ -75,10 +72,8 @@ title.addEventListener("change", () => {
           colorMenu[2].style.display = "block"
     }
   });
-//}
-//designCheck();
 
-//********************************************************************************
+/********************************************************************************/
 // Activities Section - Allows selections based on avalibility and displays cost
 
 activity.addEventListener('change', (e) => {
@@ -92,94 +87,65 @@ activity.addEventListener('change', (e) => {
     activityCost -= parsed;
     console.log(activityCost);
   }
-totalCost.textContent = `Total: $${activityCost}`;
+  totalCost.textContent = `Total: $${activityCost}`;
 
-let dataDayAndTime = event.getAttribute('data-day-and-time');
-for (let i = 0; i < checkBox.length; i++) {
+  let dataDayAndTime = event.getAttribute('data-day-and-time');
+  for (let i = 0; i < activities.length; i++) {
+   let input = dataDayAndTime;
+   console.log(input); // logs dataDayAndTime of clicked checkbox as string
+   console.log(event); // logs entire data of clicked checkbox
 
-  console.log();
-
-}
-
+  if (input !== activities && input === event) {
+    if (input.checked) { //or event.checked
+      event.disabled = true;
+    } else {
+      event.disabled = false;
+    }
+  }
+  }
 
 });
 
+/* Pseudocode -
+looping over each activity capturing in 'input' variable
+does activity occur at the same day and time as activity that was just clicked?
 
-// const activityCheck = () => {
-//   const mainCheckbox = checkBox[0];
-//   const jsFrameworks = checkBox[1];
-//   const jsLibs = checkBox[2];
-//   const express = checkBox[3];
-//   const jsNodes = checkBox[4];
-//   const buildTools = checkBox[5];
-//   const npm = checkBox[6];
+1. match data dayandtime attribute to data dayandtime attribute the element that was just clicked 'input'
+2. is the activity different than the activity just clicked?
 
-// Current problem being unchecking boxes doesn't always uncheck
-// [1] & [3] conflict, [2] & [4] conflict. If [0] is selected, all are disabled
-//display total of checkboxes as they're clicked ( variable select = data-cost )
-// jsFrameworks.addEventListener('change', (e) => {
-//   let event = e.target;
-//   express.disabled = event.checked
-//     //display totalCost
-// });
-//
-// jsLibs.addEventListener('change', (e) => {
-//   let event = e.target;
-//   jsNodes.disabled = event.checked
-//     //display totalCost
-// });
-//
-// express.addEventListener('change', (e) => {
-//   let event = e.target;
-//   jsFrameworks.disabled = event.checked
-//     //display totalCost
-// });
-//
-// jsNodes.addEventListener('change', (e) => {
-//   let event = e.target;
-//   jsLibs.disabled = event.checked
-//     //display totalCost
-// });
+Checked by seeing if the activity just clicked is not equal to the activity in the current loop iteration
+Both conditions checked by single if statement using && operator
+if both conditions are true then this activity needs to be disabled or enabled
+depending on whether clicked activity was checked or unchecked
+
+use if/else statement -
+if clicked activity was checked, then set the matching activity element's 'disabled' to true
+if clicked activity was unchecked, set matching activity element's 'disabled property to false'
+*/
 
 
-// for (let i = 0; i < checkBox.length; i++) {
-//   checkBox[i].addEventListener('change', (e) => {
-//   if (checkBox[0].checked) {
-//     checkBox[4].disabled = true;
-//   }
-//   });
-// }
-
-// mainCheckbox.addEventListener('change', (e) => {
-//   let event = e.target;
-//   if (mainCheckbox == event.checked) {
-//     for (let i = 1; i < checkBox.length; i++){
-//       checkBox[i].disabled = event.checked;
-//     }
-//   }
-//     //display totalCost
-// });
-
-
-//   checkBox.addEventListener('change', (e) => {
-//     let event = e.target;
-//     for (let i = 0; i < checkBox.length; i++) {
-//       if ()
-//     }
-//
-//   });
-
-// }
-// activityCheck();
-
-//********************************************************************************
-
+/********************************************************************************/
 
 /*
-Pseudocode
 
-// Current problem being unchecking boxes doesn't always uncheck
-// [1] & [3] conflict, [2] & [4] conflict. If [0] is selected, all are disabled
-//display total of checkboxes as they're clicked ( variable select = data-cost )
+//const checkBox = document.querySelectorAll('input[type="checkbox"]');
+//console.log(checkBox);
+//console.log(checkBox[2]); //logs checkBox[2] full data
+
+Tests directly before for loop
+// console.log(dataDayAndTime); //outside the for loop is giving me day and time (string)- inside null
+// console.log(checkBox[2]); //logs checkBox[2] full data
+
+Tests within for loop of activity eventlistener for data-day-and-time
+*console.log(input); // logs dataDayAndTime of clicked checkbox as string*
+*console.log(event); // logs entire data of clicked checkbox*
+//let input = [i];
+// console.log(checkBox[i]); //logs main checkbox only
+//console.log(input[2]); //logging "e" in tuesday
+// console.log(input); //logging [0], [1] each loop [i] separate logs
+// console.log(checkBox[i]); //logging checkBox data-cost - single Log
+// console.log(event); //logging each checkBox input separate logs
+//console.log(checkBox[2][i]); //undefined
+// console.log(dataDayAndTime); //null
 
 */
