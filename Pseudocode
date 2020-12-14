@@ -1,4 +1,4 @@
-/*  Pseudocode Project-3
+Pseudocode Project-3
 HTML
 Ideally making as few changes to the HTML file
 Add script tags for app.js
@@ -23,4 +23,19 @@ hide color options
 "color" field reads "Please Select a T-shirt theme"
 "Color" field is updated when design menu is used
 
+/* Pseudocode - Activity Section
+looping over each activity capturing in 'input' variable
+does activity occur at the same day and time as activity that was just clicked?
+
+1. match data dayandtime attribute to data dayandtime attribute the element that was just clicked 'input'
+2. is the activity different than the activity just clicked?
+
+Checked by seeing if the activity just clicked is not equal to the activity in the current loop iteration
+Both conditions checked by single if statement using && operator
+if both conditions are true then this activity needs to be disabled or enabled
+depending on whether clicked activity was checked or unchecked
+
+use if/else statement -
+if clicked activity was checked, then set the matching activity element's 'disabled' to true
+if clicked activity was unchecked, set matching activity element's 'disabled property to false'
 */
