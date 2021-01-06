@@ -15,7 +15,7 @@ const creditcard = document.querySelector("#credit-card");
 const paypal = document.querySelector("#paypal");
 const bitcoin = document.querySelector("#bitcoin");
 const form = document.getElementsByTagName('form')[0];
-const name = document.querySelector("#name");
+const nameField = document.querySelector("#name");
 const email = document.querySelector("#mail");
 const ccNum = document.querySelector("#cc-num")
 const zip = document.querySelector("#zip")
@@ -77,7 +77,7 @@ activity.addEventListener('change', (e) => {
   let event = e.target;
   let dataCost = event.getAttribute('data-cost');
   let parsed = parseInt(dataCost);
-  if (event.checked) {  //strange error that subtracts into negative total
+  if (event.checked) {
     activityCost += parsed;
   } else {
     activityCost -= parsed;
@@ -116,21 +116,14 @@ payment.addEventListener("change", () => {
   pay("credit card", creditcard, paypal, bitcoin);
 });
 
-// Form Validation and Messages Section - Checks for errors using field validators and displays messages based on input
-
-// Error messages
-// Reset Errors
-// Live Validation
-
-
-
+// Form Validation and Messages Section - Checks input fields using set parameters and displays errors based on user input
 const nameValidator = () => {
-  const nameVal = name.value;
+  const nameVal = nameField.value;
   if (nameVal.length > 0) {
-    name.style.borderColor = "white";
+    nameField.style.borderColor = "white";
     return true;
   } else {
-    name.style.borderColor = "red";
+    nameField.style.borderColor = "red";
     return false;
   }
 }
@@ -155,12 +148,10 @@ const activitiesValidator = () => {
       return true;
     }
   }
-  //activity.style.borderColor = "red"; //Invisible red
-  totalCost.append(" - Please select an activity"); //error supplied in multiples of two
+  totalCost.append(" - Please select an activity");
   return false;
   }
 
-//if (isNaN) -  Must be number
   const ccValidator = () => {
     const ccVal = ccNum.value;
     if (ccVal.length >= 13 && ccVal.length <= 16) {
@@ -194,66 +185,45 @@ const activitiesValidator = () => {
     }
   }
 
-  //show element when show is true, hide when false
-  // const showOrHideTip = (show, element) => {
-  //   if (show) {
-  //     element.style.display = "inherit"; //element returns as null - error
-  //   } else {
-  //     element.style.display = "none"; //element returns as null - error
-  //   }
-  // }
-
   const createListener = (validator) => {
     return e => {
       const text = e.target.valid;
       const valid = validator(text);
       const showTip = text !== "" && !valid;
       const tooltip = e.target.nextElementSibling;
-      //showOrHideTip(showTip, tooltip);  //HTMLInputElement.<anonymous> - error
     };
   }
 
-name.addEventListener('keyup', createListener(nameValidator));
+// Live validation using `keyup` listeners
+nameField.addEventListener('keyup', createListener(nameValidator));
 email.addEventListener('keyup', createListener(emailValidator));
 ccNum.addEventListener('keyup', createListener(ccValidator));
 zip.addEventListener('keyup', createListener(zipValidator));
 cvv.addEventListener('keyup', createListener(cvvValidator));
 
+// Prevents form submit if any required section is incomplete and notifies console
 form.addEventListener('submit', (e) => {
-
-  nameValidator();
   if (!nameValidator()) {
     e.preventDefault();
-    //showOrHideTip(); // error
     console.log("Name validator prevented submission");
   }
-
-  emailValidator();
   if (!emailValidator()) {
     e.preventDefault();
     console.log("Email validator prevented submission");
   }
-
-  activitiesValidator();
   if (!activitiesValidator()) {
     e.preventDefault();
     console.log("Activities validator prevented submission");
   }
-
   if (payment.value === "credit card") {
-    ccValidator();
     if (!ccValidator()) {
       e.preventDefault();
       console.log("CC validator prevented submission");
     }
-
-    zipValidator();
     if (!zipValidator()) {
       e.preventDefault();
       console.log("Zip validator prevented submission");
     }
-
-    cvvValidator();
     if (!cvvValidator()) {
       e.preventDefault();
       console.log("CVV validator prevented submission");
