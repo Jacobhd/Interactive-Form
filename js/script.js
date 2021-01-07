@@ -21,7 +21,6 @@ const ccNum = document.querySelector("#cc-num")
 const zip = document.querySelector("#zip")
 const cvv = document.querySelector("#cvv")
 const submitButton = document.querySelector('button[type="submit"]');
-
 activity.append(totalCost);
 let activityCost = 0;
 
@@ -84,6 +83,7 @@ activity.addEventListener('change', (e) => {
   }
   totalCost.textContent = `Total: $${activityCost}`;
 
+// Checks for any conflicting events, for added future events also
   const dataDayAndTime = event.getAttribute('data-day-and-time');
   for (let i = 0; i < checkBox.length; i++) {
    let input = dataDayAndTime;
@@ -117,6 +117,8 @@ payment.addEventListener("change", () => {
 });
 
 // Form Validation and Messages Section - Checks input fields using set parameters and displays errors based on user input
+// https://www.w3schools.com/tags/att_input_required.asp - for future buffing, try adding input validation to work when Javascript is disabled
+// Also try adding <span> elements to display error messaging next to or after field elements
 const nameValidator = () => {
   const nameVal = nameField.value;
   if (nameVal.length > 0) {
@@ -141,6 +143,7 @@ const emailValidator = () => {
   }
 }
 
+// To fix duplicate activity errors, check DOM and select a better node to append to
 const activitiesValidator = () => {
   for (let i = 0; i < checkBox.length; i++) {
     if (checkBox[i].checked) {
