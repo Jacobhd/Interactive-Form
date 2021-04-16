@@ -1,5 +1,4 @@
 # Interactive Form
-# Techdegree Project 3
 
 Creating a reactive input, user web form
 for a fictional conference called "FullStack Conf."
